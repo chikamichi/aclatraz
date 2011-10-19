@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('redis', '~> 2.2.2')
   s.add_development_dependency('riak-client', '~> 0.9.8')
   s.add_development_dependency('cassandra', '~> 0.12.1')
-  s.add_development_dependency('mongo', '~> 0.4.0')
+  s.add_development_dependency('mongo', '~> 1.4.1')
 end
