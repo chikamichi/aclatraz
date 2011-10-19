@@ -19,7 +19,7 @@ end
 
 class StubSuspect
   include Aclatraz::Suspect
-  def id; 10; end 
+  def id; 10; end
 end
 
 class StubGuarded

@@ -46,9 +46,9 @@ module Aclatraz
       def clear
         @backend[@collection].remove
       end
-      
+
       private
-      
+
       def make_doc(role, suspect, object)
         { SUSPECT_KEY => suspect_id(suspect), ROLE_KEY => pack(role.to_s, object) }
       end

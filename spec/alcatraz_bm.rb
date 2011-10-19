@@ -8,7 +8,7 @@ $account.is.bla_of!($account)
 
 class Foo
   include Aclatraz::Guard
-  
+
   suspects :account do
     allow :foo
     deny :bar
@@ -16,15 +16,15 @@ class Foo
       allow :bla_of => $account
       allow :foo
     end
-    on :bar do 
+    on :bar do
       allow :bar
     end
   end
-  
+
   def account
     $account
   end
-  
+
   def test
     guard!(:foo, :bar)
   rescue
@@ -37,7 +37,7 @@ ns = [1000, 2000, 5000, 10000]
 
 ns.each do |n|
   puts "#{n} operations:"
-  Benchmark.bm(10) do |bm| 
+  Benchmark.bm(10) do |bm|
     bm.report("Assign:") { n.times {|x| $account.roles.assign("foo#{x}") } }
     bm.report("Check:")  { n.times {|x| $account.roles.has?("foo#{x}") } }
     bm.report("Guard:")  { n.times {|x| $foo.test } }

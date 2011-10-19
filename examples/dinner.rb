@@ -1,6 +1,6 @@
 # == Dinner example.
-# 
-# Don't forget to initialize ACLatraz datastore and your ActiveRecord 
+#
+# Don't forget to initialize ACLatraz datastore and your ActiveRecord
 # connection with database.
 
 class Person < ActiveRecord::Base
@@ -12,36 +12,36 @@ end
 
 class Kitchen
   include Aclatraz::Guard
-  
-  suspects "@person" do 
+
+  suspects "@person" do
     deny all
     action :eat_dinner do
       allow :hungry
     end
-    action :get_dinner do 
+    action :get_dinner do
       allow :servant_at => Dinner
       allow :creator_of => "@dinner"
     end
-    action :prepare_dinner do 
+    action :prepare_dinner do
       allow :chef
     end
   end
-  
+
   def initialize(person)
     @person = person
   end
-  
+
   def prepare_dinner
     guard! :prepare_dinner
     @dinner = Dinner.create
     @person.is.creator_of!(@dinner)
   end
-  
+
   def get_dinner(id)
     @dinner = Dinner.find(id)
     guard! :get_dinner
   end
-  
+
   def eat_dinner(id)
     @dinner = Dinner.find(id)
     guard! :eat_dinner

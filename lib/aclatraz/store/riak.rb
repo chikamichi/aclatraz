@@ -5,8 +5,8 @@ module Aclatraz
     # The most optimal way to store roles in riak database is pack everything
     # in a single key name, eg:
     #
-    #   :suspect_id/:role_name 
-    #   :suspect_id/:role_name/:ClassName 
+    #   :suspect_id/:role_name
+    #   :suspect_id/:role_name/:ClassName
     #   :suspect_id/:role_name/:ObjectClass/object_id
     class Riak
       include Aclatraz::Helpers
@@ -49,7 +49,7 @@ module Aclatraz
       end
 
       def clear
-        # not optimal... yea but there is no other way to clear all keys 
+        # not optimal... yea but there is no other way to clear all keys
         # in the riak bucket -_-"
         @backend.keys.each {|key| @backend.delete(key) }
       end
@@ -63,9 +63,9 @@ module Aclatraz
         case object
         when nil
           [suspect, role]
-        when Class 
+        when Class
           [suspect, role, object.name]
-        else 
+        else
           [suspect, role, object.class.name, object.id]
         end.join("/")
       end

@@ -8,10 +8,10 @@ module Aclatraz
   require 'aclatraz/guard'
   require 'aclatraz/suspect'
   require 'aclatraz/version'
-  
+
   extend Helpers
 
-  # Initialize Aclatraz system with given datastore. 
+  # Initialize Aclatraz system with given datastore.
   #
   #   Aclatraz.init :redis, :host => "127.0.0.1", :database => 0
   #   Aclatraz.init :tokyocabinet, "./permissions.tch"
@@ -22,14 +22,14 @@ module Aclatraz
   rescue NameError
     raise InvalidStore, "The #{store.inspect} ACL store is not defined!"
   end
-  
-  # Returns current datastore object, or raises +StoreNotInitialized+ when 
-  # +init+ method wasn't called before. 
+
+  # Returns current datastore object, or raises +StoreNotInitialized+ when
+  # +init+ method wasn't called before.
   def self.store
     @store or raise StoreNotInitialized, "ACLatraz is not initialized!"
   end
-  
-  # Access control lists fof all classes protected by Aclatraz. 
+
+  # Access control lists fof all classes protected by Aclatraz.
   def self.acl
     @acl ||= {}
   end
