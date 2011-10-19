@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "Aclatraz suspect" do 
-  before(:all) { Aclatraz.init :redis,  :host => "127.0.0.1", :database => 0 }
+describe "Aclatraz suspect" do
+  let(:db) { Aclatraz.init :redis,  :host => "127.0.0.1", :database => 0 }
   subject { StubSuspect.new }
   let(:target) { StubTarget.new }
   
@@ -25,9 +25,10 @@ describe "Aclatraz suspect" do
     subject.roles.has?(:third, target).should be_true
     subject.roles.has?(:first, StubTarget).should be_false
   end
-  
-  it "should allow to get list of roles assigned to user" do 
-    (subject.roles.all - ["first", "second", "third"]) .should be_empty
+
+  it "should allow to get a list of user's roles" do
+    db.clear
+    (subject.roles.all - ["first", "second", "third"]).should be_empty
   end
   
   it "should properly remove given permissions" do 
