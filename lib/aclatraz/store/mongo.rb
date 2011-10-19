@@ -34,7 +34,7 @@ module Aclatraz
       end
 
       def check(role, suspect, object=nil)
-        @backend[@collection].find(make_doc(role, suspect, object)).map.empty? == false or begin
+        @backend[@collection].find(make_doc(role, suspect, object)).count > 0 or begin
           object && !object.is_a?(Class) ? check(role, suspect, object.class) : false
         end
       end
